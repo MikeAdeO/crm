@@ -3,7 +3,8 @@ import bcrypt from 'bcrypt';
 import UserRepository from '@/repositories/user.repository';
 import CompanyRepository from '@/repositories/company.repository';
 import LocationRepository from '@/repositories/location.repository';
-
+import { JWT_SECRET } from '@/config/variable';
+import jwt from 'jsonwebtoken';
 
 class AuthService {
     private readonly userRepo: UserRepository;
@@ -60,6 +61,35 @@ class AuthService {
         } catch (error: any) {
             throw new Error(`Registration failed: ${error.message}`);
         } 
+    }
+
+
+    login = async (email:string, password:string) => {
+        try {
+            const user =   await this.userRepo.findUserAuth(email)
+            if(!user){
+                throw new Error('user does not exist!');
+            }
+
+            if (!(await bcrypt.compare(password, user.password))) {
+                throw new Error('Invalid credentials');
+              }
+
+              if (!JWT_SECRET) {
+                throw new Error('Server configuration error');
+              
+              }
+
+            //   if(user.emailVerified === false){
+
+            //     //IMPLEMENT QUEUE TO SEND TO EMAIL
+            //     throw new Error('Please verify your email, check your email for the OTP CODE');
+            //   }
+
+              return jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '1h' });
+        } catch (error:any) {
+            throw new Error(error);
+        }
     }
 }
 

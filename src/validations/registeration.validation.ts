@@ -5,6 +5,9 @@ const registrationSchema = Joi.object({
     user: Joi.object({
         email: Joi.string().email().required(),
         password: Joi.string().min(6).required(),
+        confirm_password: Joi.string().valid(Joi.ref('password')).required().messages({
+            'any.only': 'Passwords do not match'
+        }),
         firstName: Joi.string().required(),
         lastName: Joi.string().required(),
         title: Joi.string().required(),

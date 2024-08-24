@@ -57,6 +57,26 @@ class UserRepository {
             throw new Error(`Failed to find user: ${error.message}`);
         }
     }
+    findUserAuth = async (email:string) => {
+        try {
+            const response = await prisma.user.findUnique({
+                where: { email: email},
+                select: {
+                    id: true,
+                    email: true,
+                    firstName: true,
+                    lastName: true,
+                    title: true,
+                    password: true,
+                    emailVerified:true
+                }
+            });
+
+            return response;
+        } catch (error: any) {
+            throw new Error(`Failed to find user: ${error.message}`);
+        }
+    }
 
     createUserAddress = async (data:UserAddressInterface)  => {
         try {
