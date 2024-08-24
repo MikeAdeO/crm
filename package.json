@@ -42,7 +42,7 @@
     "db:deploy": "prisma migrate dev --name init",
     "db:prepare": "prisma format && prisma generate",
     "db:migrate:dev": "npm run db:prepare && prisma migrate dev",
-    "dev": "npm run db:deploy && npm run db:seed &&  ts-node src/server.ts"
+    "dev": "npm run db:deploy && npm run db:seed && npm run build && npm run start"
   },
   "repository": {
     "type": "git",

@@ -2,7 +2,7 @@
 import AuthService from "@/services/auth.service";
 import LoginSchema from "@/validations/login.validation";
 import registrationSchema from "@/validations/registeration.validation";
-import { Request, Response } from 'express';
+import {  Response } from 'express';
 class UserController {
     private readonly authService: AuthService;
     constructor(
