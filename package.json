@@ -39,9 +39,10 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "db:seed": "ts-node prisma/seed.ts",
-    "db:deploy": "prisma migrate deploy",
+    "db:deploy": "prisma migrate dev --name init",
     "db:prepare": "prisma format && prisma generate",
-    "db:migrate:dev": "npm run db:prepare && prisma migrate dev"
+    "db:migrate:dev": "npm run db:prepare && prisma migrate dev",
+    "dev": "npm run db:deploy && npm run db:seed &&  ts-node src/server.ts"
   },
   "repository": {
     "type": "git",
