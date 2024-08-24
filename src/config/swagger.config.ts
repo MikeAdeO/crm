@@ -10,7 +10,7 @@ const options: Options = {
         },
         servers: [
             {
-                url: 'http://localhost:4000',
+                url: 'https://crm-uo1v.onrender.com',
             },
         ],
         components: {
