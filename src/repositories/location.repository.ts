@@ -47,6 +47,42 @@ class LocationRepository {
             throw new Error(error.message);
         }
     }
+    findManyCountries = async () => {
+        try {
+            const response = await prisma.country.findMany({
+                select: {
+                    id:true,
+                    name:true,
+                    symbol: true,
+                    status:true 
+                }
+            });
+            console.log('countries', response)
+            return response;
+        } catch (error: any) {
+            throw new Error(error.message);
+        }
+    }
+    findManyCityByCountry = async (countryId:number) => {
+        try {
+            const response = await prisma.city.findMany({
+                where: {
+                    countryId:countryId
+                },
+                select: {
+                    id:true,
+                    name:true,
+                    symbol: true,
+                    status:true 
+                }
+            });
+            return response;
+        } catch (error: any) {
+            throw new Error(error.message);
+        }
+    }
+
+
 }
 
 export default LocationRepository;

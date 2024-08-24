@@ -1,4 +1,4 @@
-import { RegisterationRequestData } from "@/interfaces/user.interface";
+
 import AuthService from "@/services/auth.service";
 import LoginSchema from "@/validations/login.validation";
 import registrationSchema from "@/validations/registeration.validation";
