@@ -17,7 +17,7 @@ app.use(helmet());
 app.use(cors());
 const authRouter = new AuthRouter()
 
-app.use('/api/auth/registeration', authRouter.getRouter());
+app.use('/api/auth', authRouter.getRouter());
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
