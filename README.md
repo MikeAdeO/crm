@@ -52,3 +52,4 @@ The project is organized into several directories, each responsible for a specif
 
 The Postman documentation for this CRM API is available at:
 [Postman Documentation](https://documenter.getpostman.com/view/31591055/2sAXjF8F19) 
+[SWAGGER Documentation](https://crm-uo1v.onrender.com/api-docs/) 
